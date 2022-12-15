@@ -37,7 +37,7 @@ exports.signin = (req, res) => {
         })
     }
 
-    const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET)
+    const token = jwt.sign({_id: user._id}, process.env.SECRET)
 
     res.cookie('t', token, {expire: new Date() + 9999})
 
@@ -53,6 +53,25 @@ exports.signout = (req, res) => {
 }
 
 exports.requireSignin = expressJwt({
-    secret: process.env.JWT_SECRET,
+    secret: "sadsddasdsa",
+    algorithms: ["HS256"],
     userProperty: "auth"
 });
+
+exports.isAuth = (req, res, next) => {
+     let user = req.prfile && req.auth && req.profile._id == req.auth._id
+            if(!user){
+                return res.json({
+                    error: "Access Denied"
+                })
+            }
+            next();
+}
+
+exports.isAdmin = (req, res, next)=>{
+        if(req.profile.role === 0){
+           return res.status(403).json({
+            error:"Admin resources , Access Denied"
+           }) 
+        }
+}
