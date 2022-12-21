@@ -5,6 +5,8 @@ const morgan = require("morgan")
 const cookieParser = require("cookie-parser")
 const authRoutes = require("./routes/auth")
 const userRouter = require("./routes/userRoutes")
+const categoryRouter = require("./routes/categoryRouter")
+const productRoutes = require("./routes/productsRouter")
 
 require("dotenv").config()
 
@@ -24,7 +26,9 @@ app.use(cookieParser())
 
 // routes middleware
 app.use('/api', authRoutes);
-app.use('/api', userRouter)
+app.use('/api', userRouter);
+app.use('/api', categoryRouter);
+app.use('/api', productRoutes);
 
 
 
