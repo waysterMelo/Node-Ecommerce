@@ -31,7 +31,7 @@ exports.read = (req, res)=>{
     return res.json(req.category)
 }
 
-exports.readAll = (req,res)=>{
+exports.readAll = (req, res)=>{
     Category.find().exec((err, result) => {
         if(err){
             return res.status(400).json({
@@ -63,7 +63,7 @@ exports.remove = (req, res)=>{
                 error: errorHandler(err)
             })
         }
-        res.json({
+        res.json({ 
             message: "Category deleted"
         })
     })

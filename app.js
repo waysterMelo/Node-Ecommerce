@@ -7,6 +7,7 @@ const authRoutes = require("./routes/auth")
 const userRouter = require("./routes/userRoutes")
 const categoryRouter = require("./routes/categoryRouter")
 const productRoutes = require("./routes/productsRouter")
+const cors = require("cors")
 
 require("dotenv").config()
 
@@ -23,6 +24,7 @@ app.use(bodyParser.json())
 app.use(morgan("dev"))
 app.use(cookieParser())
 app.use(cookieParser())
+app.use(cors())
 
 // routes middleware
 app.use('/api', authRoutes);

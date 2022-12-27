@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema({
     },
     category:{
         type: ObjectId,
-        ref: 'Category',
+        ref: "Category",
         required: true
     },
     quantity:{
@@ -35,6 +35,10 @@ const productSchema = new mongoose.Schema({
     shipping: {
         required: false,
         type: Boolean
+    },
+    sold:{
+        type: Number,
+        default: 0
     }
 }, {timestamps: true});
 
